@@ -8,7 +8,7 @@
                     <a class="nav-link" href="{{ route('nuevo-cliente') }}">Nuevo Cliente</a>
                 </li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Nuevo Prestamo</a>
+					<a class="nav-link" href="{{ route('nuevo-prestamo') }}">Nuevo Prestamo</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ route('clientes.ver') }}">Clientes</a>

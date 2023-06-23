@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PrestamosController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientesController;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/clientes', [ClientesController::class, 'clientes'])->name('clientes.ver');
     Route::delete('/clientes/{cliente}', [ClientesController::class, 'destroy'])->name('clientes.destroy');
     Route::put('/clientes/{id}', [ClientesController::class, 'update'])->name('clientes.update');
-
+    Route::get('/nuevo-prestamo', [PrestamosController::class, 'index'])->name('nuevo-prestamo');
+    Route::post('/guardar-prestamos', [PrestamosController::class, 'store'])->name('prestamos.store');
 });
 
 require __DIR__.'/auth.php';

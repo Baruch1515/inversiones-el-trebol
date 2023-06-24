@@ -9,8 +9,8 @@ class Cuota extends Model
 {
     use HasFactory;
     public function prestamo()
-{
-    return $this->belongsTo(Prestamo::class);
-}
+    {
+        return $this->belongsTo(Prestamo::class)->onDelete('cascade');
+    }
 
 }

@@ -29,7 +29,10 @@
                                     </h5>
                                     <div class="card-body">
                                         <p class="card-text">
-                                            ${{ $totalDinero }}
+                                        
+     <b>${{ number_format($totalDinero, 3, '.', '.') }}</b>
+
+
                                         </p>
                                     </div>
                                     <div class="card-footer">
@@ -44,7 +47,7 @@
                                     </h5>
                                     <div class="card-body">
                                         <p class="card-text">
-                                            ${{$totalcaja}}
+                                        <b>  ${{$totalcaja}}</b>
                                         </p>
                                     </div>
                                     <div class="card-footer">

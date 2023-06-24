@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('cuotas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('prestamo_id');
-            $table->foreign('prestamo_id')->references('id')->on('prestamos');
+            $table->foreign('prestamo_id')->references('id')->on('prestamos')->onDelete('cascade');
             $table->decimal('monto_cuota', 8, 3);
             $table->date('fecha');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

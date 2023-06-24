@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cliente extends Model
+class Cuota extends Model
 {
     use HasFactory;
-    public function prestamos()
+    public function prestamo()
 {
-    return $this->hasMany(Prestamo::class, 'cliente_id');
+    return $this->belongsTo(Prestamo::class);
 }
 
 }

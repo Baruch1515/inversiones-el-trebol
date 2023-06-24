@@ -15,14 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->decimal('cuotas');
-            $table->decimal('monto', 8, 3); // 8 dígitos en total, con 3 decimales            $table->unsignedInteger('cuotas');
-            $table->decimal('intereses', 5, 2); // 5 dígitos en total, con 2 decimales
+            $table->unsignedInteger('cuotas');
+            $table->decimal('monto', 8, 3);
+            $table->unsignedInteger('intereses');
             $table->string('cobro');
+            $table->string('nota');
             $table->decimal('monto_cuota', 8, 3);
+            $table->decimal('ganancia', 8, 3)->nullable();
+            $table->decimal('dinero_total', 8, 3)->nullable();
             $table->timestamps();
         });
-        
     }
 
     /**

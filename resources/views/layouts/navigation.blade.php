@@ -13,6 +13,18 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ route('clientes.ver') }}">Clientes</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('cuotas.create') }}">Nueva Cuota</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('cuotas') }}">Cuotas</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('caja.index') }}">Caja</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('registros.index') }}">Registro de caja</a>
+				</li>
                 </li>
 				<li class="nav-item">
                 <form method="POST" action="{{ route('logout') }}">

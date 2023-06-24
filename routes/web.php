@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::middleware('auth')->group(function () {
@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/caja/guardar-registro', [CajaController::class, 'guardarRegistroDinero'])->name('caja.guardar-registro');
 
     Route::get('/registros', [CajaController::class, 'registros'])->name('registros.index');
+    Route::delete('/VerCuotas/{cuota}', [CuotaController::class, 'destroy'])->name('cuotas.destroy');
 });
 
 require __DIR__.'/auth.php';

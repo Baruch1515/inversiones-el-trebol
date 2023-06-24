@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/0c07597779.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -45,7 +45,8 @@
                                 {{$caja->created_at}}
                             </td>
                             <td>
-                                ${{$caja->dinero_global}}
+                                <b>${{ number_format($caja->dinero_global, 3, '.', '.') }}</b>
+
                             </td>
                             <td>
                                 ${{$caja->dinero_cartera}}
@@ -54,8 +55,9 @@
                         @endforeach
                     </tbody>
                 </table> 
-            </div>
+             </div>
         </div>
-    </div>
+    </div
+
 </body>
 </html>

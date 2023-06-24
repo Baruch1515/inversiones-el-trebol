@@ -47,9 +47,6 @@
                     <td>${{ $cuota->monto_cuota }}</td>
                     <td>{{ $cuota->fecha }}</td>
 					<td>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $cuota->id }}">
-            <i class="fa-solid fa-pen-to-square"></i>
-            </button>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $cuota->id }}">
             <i class="fa-solid fa-trash"></i>
             </button>

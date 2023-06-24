@@ -54,16 +54,51 @@
                             </div>
                         </div>
                         <br>
+                        <form action="{{ route('caja.guardar-registro') }}" method="POST">
+    @csrf
+    <input type="hidden" name="dineroGlobal" value="{{ $totalDinero }}">
+    <button type="submit" class="btn btn-primary">Guardar Registro <i class="fa-solid fa-cloud"></i></button>
+</form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <form action="{{ route('caja.guardar-registro') }}" method="POST">
-    @csrf
-    <input type="hidden" name="dineroGlobal" value="{{ $totalDinero }}">
-    <button type="submit" class="btn btn-primary">Guardar Registro</button>
-</form>
+    @if(Session::has('success'))
+    <div id="floating-alert" class="alert alert-success alert-floating">
+        {{ Session::get('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <script>
+        // Obtener el elemento de la alerta flotante
+        var floatingAlert = document.getElementById('floating-alert');
+        
+        // Mostrar la alerta flotante
+        floatingAlert.classList.add('show');
+        
+        // Ocultar la alerta flotante después de 5 segundos
+        setTimeout(function(){
+            floatingAlert.classList.remove('show');
+        }, 5000);
+    </script>
+    <style>
+        .alert-floating {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.alert-floating.show {
+    opacity: 1;
+}
+
+    </style>
+@endif
 
 </body>
 </html>

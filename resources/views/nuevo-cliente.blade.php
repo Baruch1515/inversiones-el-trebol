@@ -52,14 +52,40 @@
 </div>
 <br>
 @if(Session::has('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ Session::get('success') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-@endif
+<div id="floating-alert" class="alert alert-success alert-floating">
+    {{ Session::get('success') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<script>
+    // Obtener el elemento de la alerta flotante
+    var floatingAlert = document.getElementById('floating-alert');
+    
+    // Mostrar la alerta flotante
+    floatingAlert.classList.add('show');
+    
+    // Ocultar la alerta flotante después de 5 segundos
+    setTimeout(function(){
+        floatingAlert.classList.remove('show');
+    }, 5000);
+</script>
+<style>
+    .alert-floating {
+position: fixed;
+top: 10px;
+right: 10px;
+z-index: 9999;
+opacity: 0;
+transition: opacity 0.5s ease-in-out;
+}
 
+.alert-floating.show {
+opacity: 1;
+}
+
+</style>
+@endif
 <script>
 function limpiarFormulario() {
   document.getElementById("myForm").reset();

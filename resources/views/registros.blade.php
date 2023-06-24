@@ -11,12 +11,13 @@
     </head>
 <body>
     @include("layouts/navigation")
+    <br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <h3>
                     Registro de Caja
-                </h3>
+                </h3><br>
                 <table id="tabla" class="table table-bordered table-hover">
                     <thead>
                         <tr>

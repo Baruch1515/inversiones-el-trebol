@@ -42,7 +42,7 @@
 					<tr>
                     <td>{{ $cuota->id }}</td>
                     <td>{{ $cuota->prestamo->cliente->nombre }} {{ $cuota->prestamo->cliente->apellido }}</td>
-                    <td>{{ $cuota->monto_cuota }}</td>
+                    <td>${{ $cuota->monto_cuota }}</td>
                     <td>{{ $cuota->fecha }}</td>
 					</tr>
                     @endforeach

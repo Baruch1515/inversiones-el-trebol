@@ -15,7 +15,6 @@ class CuotaController extends Controller
         return view('nuevacuotas', compact("prestamos"));
     }
 
-
     public function store(Request $request)
     {
         $prestamo = Prestamo::findOrFail($request->input('prestamo'));
@@ -46,7 +45,6 @@ class CuotaController extends Controller
         return redirect()->back()->with('success', 'Cuota agregada exitosamente.');
     }
     
-
     public function ver(){
         $cuotas = Cuota::all(); 
         return view("vercuotas", compact("cuotas"));
@@ -68,7 +66,4 @@ class CuotaController extends Controller
     
         return redirect()->back()->with('success', 'Cuota eliminada correctamente.');
     }
-    
-     
-
 }

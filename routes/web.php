@@ -47,6 +47,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/registros', [CajaController::class, 'registros'])->name('registros.index');
     Route::delete('/VerCuotas/{cuota}', [CuotaController::class, 'destroy'])->name('cuotas.destroy');
+    
+
+    
 });
 
 require __DIR__.'/auth.php';

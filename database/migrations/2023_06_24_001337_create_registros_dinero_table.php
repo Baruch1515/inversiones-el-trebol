@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->decimal('dinero_global', 8, 4); // Cambia la precisión y escala según tus necesidades
             $table->decimal('dinero_cartera', 9, 3); // Cambia la precisión y escala según tus necesidades
+            $table->unsignedBigInteger('total_clientes')->default(0);
+            $table->unsignedBigInteger('total_prestamos')->default(0);
+            $table->decimal('total_ganancias', 10, 2)->default(0.0);
             $table->timestamps();
         });
     }
+    
     
     
 

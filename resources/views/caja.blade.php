@@ -80,13 +80,31 @@
 							</div>
 						</div>
 					</div> 
+					<br>
+					<div class="row">
+					<div class="col-md-12">
+					<div class="card">
+								<h5 class="card-header">
+									Ganancias
+								</h5>
+								<div class="card-body">
+									<p class="card-text">
+                                   <b> ${{ $totalGanancias }}</b>
+									</p>
+								</div>
+							</div>
+					</div>
+					</div>
                     <br>
-                    <form action="{{ route('caja.guardar-registro') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="dineroGlobal" value="{{ $totalDinero }}">
-                        <button type="submit" class="btn btn-primary">Guardar Registro <i class="fa-solid fa-cloud"></i></button>
-                    </form>
-                    
+					<form action="{{ route('caja.guardar-registro') }}" method="POST">
+						@csrf
+						<input type="hidden" name="dineroGlobal" value="{{ $totalDinero }}">
+						<input type="hidden" name="dineroCartera" value="{{ $totalcaja }}">
+						<input type="hidden" name="totalClientes" value="{{ $totalClientes }}">
+						<input type="hidden" name="totalPrestamos" value="{{ $totalPrestamos }}">
+						<input type="hidden" name="totalGanancias" value="{{ $totalGanancias }}">
+						<button type="submit" class="btn btn-primary">Guardar Registro <i class="fa-solid fa-cloud"></i></button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -130,9 +148,3 @@
 
 </body>
 </html>
-
-
-
-
-
-

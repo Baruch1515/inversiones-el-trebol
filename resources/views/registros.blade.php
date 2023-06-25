@@ -33,6 +33,15 @@
                             <th>
                                 Dinero en Cartera
                             </th>
+                            <th>
+                                Numero de clientes
+                            </th>
+                            <th>
+                                Total de prestamos
+                            </th>
+                            <th>
+                                    Ganancias
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +59,15 @@
                             </td>
                             <td>
                                 ${{$caja->dinero_cartera}}
+                            </td>
+                            <td>
+                                {{$caja->total_clientes}}
+                            </td>
+                            <td>
+                                {{$caja->total_prestamos}}
+                            </td>
+                            <td>
+                                ${{$caja->total_ganancias}}
                             </td>
                         </tr>
                         @endforeach

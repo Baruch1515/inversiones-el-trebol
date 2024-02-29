@@ -46,21 +46,45 @@
                     </div>
 
 
-                    <div class="form-group">
-                        <label for="cliente">Día de cobro</label>
-                        <select name="cobro" id="cobro" class="form-control" required>
-                            <option value="" selected>Seleccione un día</option>
-                            <option value="Lunes">Lunes</option>
-                            <option value="Martes">Martes</option>
-                            <option value="Miércoles">Miércoles</option>
-                            <option value="Jueves">Jueves</option>
-                            <option value="Viernes">Viernes</option>
-                            <option value="Sábado">Sábado</option>
-                            <option value="Domingo">Domingo</option>
-                        </select>
-                    </div>
 
-                    <div class="form-group">
+
+
+    <div class="form-group">
+        <label for="cliente">Días de cobro</label><br>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="cobro[]" value="Lunes">
+            <label class="form-check-label">Lunes</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="cobro[]" value="Martes">
+            <label class="form-check-label">Martes</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="cobro[]" value="Miércoles">
+            <label class="form-check-label">Miércoles</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="cobro[]" value="Jueves">
+            <label class="form-check-label">Jueves</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="cobro[]" value="Viernes">
+            <label class="form-check-label">Viernes</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="cobro[]" value="Sábado">
+            <label class="form-check-label">Sábado</label>
+        </div>
+
+        <div class="form-check
+
+                   <div class="form-group">
                         <label for="exampleInputEmail1">Monto de la cuota</label>
                         <input oninput="formatCurrency(this)" type="text" name="monto_cuota" class="form-control" required>
                     </div>

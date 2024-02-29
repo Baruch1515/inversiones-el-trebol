@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', function () {
+    return view('dashboard');
+});
 
 
 
@@ -31,7 +34,7 @@ use Illuminate\Support\Facades\Route;
     Route::put('/clientes/{id}', [ClientesController::class, 'update'])->name('clientes.update');
     Route::get('/nuevo-prestamo', [PrestamosController::class, 'index'])->name('nuevo-prestamo');
     Route::post('/guardar-prestamos', [PrestamosController::class, 'store'])->name('prestamos.store');
-    Route::get('/', [PrestamosController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [PrestamosController::class, 'dashboard'])->name('dashboard');
     Route::get('/prestamos/filtrar', [PrestamosController::class, 'filtrar'])->name('prestamos.filtrar');
     Route::delete('/dashboard/{prestamo}', [PrestamosController::class, 'destroy'])->name('prestamo.destroy');
 
@@ -44,6 +47,5 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('/registros', [CajaController::class, 'registros'])->name('registros.index');
     Route::delete('/VerCuotas/{cuota}', [CuotaController::class, 'destroy'])->name('cuotas.destroy');
+    
 
-
-require __DIR__.'/auth.php';

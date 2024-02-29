@@ -2,42 +2,51 @@
 <html lang="en">
 
 <head>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 	<script src="https://kit.fontawesome.com/0c07597779.js" crossorigin="anonymous"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Inversiones El trebol</title>
 	<script src="{{ asset('js/dashboard.js') }}"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 
 <body>
+	@include("layouts/navigation")
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				@include("layouts/navigation")
+
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="text-center">
-							Inversiones El trebol
-						</h3>
 
-						<form action="{{ route('dashboard') }}" method="GET" class="form-inline">
-							<div class="form-group mr-2">
-								<label for="cobro">Día de cobro</label>
-								<select name="cobro" id="cobro" class="form-control" required>
-									<option value="" selected>Seleccione un día</option>
-									<option value="Lunes">Lunes</option>
-									<option value="Martes">Martes</option>
-									<option value="Miércoles">Miércoles</option>
-									<option value="Jueves">Jueves</option>
-									<option value="Viernes">Viernes</option>
-									<option value="Sábado">Sábado</option>
-									<option value="Domingo">Domingo</option>
-								</select>
-							</div>
-							<button type="submit" class="btn btn-primary">Filtrar</button>
-						</form><br>
+					<form action="{{ route('dashboard') }}" method="GET" class="row g-3">
+    <div class="col-auto">
+        <label for="cobro" class="visually-hidden">Día de cobro</label>
+    </div>
+    <div class="col-auto">
+        <select name="cobro" id="cobro" class="form-control" required>
+            <option value="" selected>Seleccione un día</option>
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miércoles">Miércoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sábado">Sábado</option>
+            <option value="Domingo">Domingo</option>
+        </select>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </div>
+</form>
+<form action="{{ route('dashboard') }}" method="GET">
+    <div class="col-auto mt-3">
+        <button type="submit" class="btn btn-secondary">Mostrar Todos</button>
+    </div>
+</form>
+
+
+
+						<br>
 
 						<table class="table table-bordered table-hover table-sm">
 							<thead>
@@ -72,7 +81,6 @@
 										${{ $prestamo->dinero_total}}
 
 									</td>
-
 									<td>
 										{{$prestamo->cobro}}
 									</td>
@@ -137,10 +145,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </body>
 
 </html>

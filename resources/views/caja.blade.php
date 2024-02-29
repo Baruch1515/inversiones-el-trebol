@@ -16,7 +16,8 @@
 <body>
 	@include("layouts/navigation")
 	<br>
-
+	<form action="{{ route('caja.guardar-registro') }}" method="POST">
+    @csrf
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -45,7 +46,10 @@
 									</h5>
 									<div class="card-body">
 										<p class="card-text">
-											<b>${{$totalcaja}}</b>
+											<div class="form-group">
+											  <input oninput="formatCurrency(this)" type="text" name="dineroCartera" id="" class="form-control" placeholder="" aria-describedby="helpId">
+											  <small id="helpId" class="text-muted">Dinero en cartera</small>
+											</div>
 										</p>
 									</div>
 								</div>
@@ -98,15 +102,21 @@
 							</div>
 						</div>
 						<br>
-						<form action="{{ route('caja.guardar-registro') }}" method="POST">
-							@csrf
-							<input type="hidden" name="dineroGlobal" value="{{ $totalDinero }}">
-							<input type="hidden" name="dineroCartera" value="{{ $totalcaja }}">
-							<input type="hidden" name="totalClientes" value="{{ $totalClientes }}">
-							<input type="hidden" name="totalPrestamos" value="{{ $totalPrestamos }}">
-							<input type="hidden" name="totalGanancias" value="{{ $totalGanancias }}">
-							<button type="submit" class="btn btn-primary">Guardar Registro <i class="fa-solid fa-cloud"></i></button>
-						</form>
+						<div class="d-flex justify-content-between">
+						<div class="d-flex justify-content-start gap-5">
+
+    <input type="hidden" name="dineroGlobal" value="{{ $totalDinero }}">
+    <input type="hidden" name="totalClientes" value="{{ $totalClientes }}">
+    <input type="hidden" name="totalPrestamos" value="{{ $totalPrestamos }}">
+    <input type="hidden" name="totalGanancias" value="{{ $totalGanancias }}">
+    <button type="submit" class="btn btn-primary">Guardar Registro <i class="fa-solid fa-cloud"></i></button>
+  </form>
+  
+</div>
+
+		
+										</div>						
+
 					</div>
 				</div>
 			</div>
@@ -146,7 +156,18 @@
 		}
 	</style>
 	@endif
+	<script>
+    function formatCurrency(input) {
+        // Eliminar caracteres no numéricos
+        let value = input.value.replace(/[^0-9]/g, '');
 
+        // Dar formato al valor con un signo de dólar y puntos cada tres cifras
+        value = '$' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+        // Asignar el valor formateado de vuelta al campo de entrada
+        input.value = value;
+    }
+</script>
 </body>
 
 </html>

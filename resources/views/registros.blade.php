@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+
+<head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        <script src="https://kit.fontawesome.com/0c07597779.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inversiones El trebol</title>
-    </head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/0c07597779.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inversiones El trebol</title>
+</head>
+
 <body>
     @include("layouts/navigation")
     <br>
@@ -40,7 +42,7 @@
                                 Total de prestamos
                             </th>
                             <th>
-                                    Ganancias
+                                Ganancias
                             </th>
                         </tr>
                     </thead>
@@ -58,7 +60,7 @@
 
                             </td>
                             <td>
-                                ${{$caja->dinero_cartera}}
+							<b>${{$caja->dineroCartera }}</b>
                             </td>
                             <td>
                                 {{$caja->total_clientes}}
@@ -67,15 +69,16 @@
                                 {{$caja->total_prestamos}}
                             </td>
                             <td>
-                                ${{$caja->total_ganancias}}
+
+                                <b>${{ number_format($caja->total_ganancias, 3, '.', '.') }}</b>
+
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
-                </table> 
-             </div>
+                </table>
+            </div>
         </div>
-    </div
+    </div </body>
 
-</body>
 </html>

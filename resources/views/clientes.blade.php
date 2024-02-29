@@ -81,7 +81,13 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                @if(session('error'))
+    <script>
+        // Muestra la alerta utilizando JavaScript
+        alert("{{ session('error') }}");
+        // Redirige nuevamente a la vista de clientes si es necesario
+    </script>
+@endif
                                 <div class="modal fade" id="editModal{{ $cliente->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">

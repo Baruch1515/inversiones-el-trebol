@@ -5,7 +5,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Prestamo;
-
+use Illuminate\Support\Facades\DB;
 class PrestamosController extends Controller
 {
     public function index()
@@ -18,12 +18,15 @@ class PrestamosController extends Controller
     {
         $diaCobro = $request->cobro;
         
-        if (empty($diaCobro)) {
-            $diaCobro = Carbon::now()->format('l'); // Obtén el día actual en formato de texto (ejemplo: "Monday", "Tuesday", etc.)
+        $prestamos = Prestamo::query();
+    
+        // Verificar si se ha seleccionado un día de cobro
+        if (!empty($diaCobro)) {
+            $prestamos->where('cobro', 'LIKE', "%$diaCobro%");
         }
     
-        $prestamos = Prestamo::where('cobro', $diaCobro)->get();
-        
+        $prestamos = $prestamos->get();
+    
         return view('dashboard', compact('prestamos', 'diaCobro'));
     }
     
@@ -35,7 +38,7 @@ class PrestamosController extends Controller
         $prestamo->cuotas = intval($request->cuotas);
         $prestamo->intereses = $request->intereses;
         $prestamo->nota = $request->nota;
-        $prestamo->cobro = $request->cobro;
+        $prestamo->cobro = implode(', ', $request->cobro);
         $prestamo->monto_cuota = str_replace(['$', ','], '', $request->monto_cuota);
         $prestamo->ganancia = $request->ganancia;
         $prestamo->dinero_total = $prestamo->monto + $prestamo->ganancia; // Calcula el valor del campo dinero_total

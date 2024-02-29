@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Cliente;
+use App\Models\Prestamo;
 
 class ClientesController extends Controller
 {
@@ -63,10 +64,17 @@ class ClientesController extends Controller
     }
     public function destroy(Cliente $cliente)
     {
-        // Realizar la lógica de eliminación del cliente
+        // Verificar si el cliente tiene préstamos pendientes
+        $prestamosPendientes = Prestamo::where('cliente_id', $cliente->id)->count();
+        if ($prestamosPendientes > 0) {
+            // Si hay préstamos pendientes, redirige con un mensaje de error
+            return redirect()->back()->with('error', 'No puedes eliminar a este cliente porque tiene préstamos pendientes.')->with('client_id', $cliente->id);
+        }
+        
+        // Si no hay préstamos pendientes, procede con la eliminación del cliente
         $cliente->delete();
     
-        // Redirigir a la página de registros con un mensaje de éxito
+        // Redirige a la página de registros con un mensaje de éxito
         return redirect()->back()->with('success', 'Cliente eliminado exitosamente');
     }
     

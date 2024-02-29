@@ -23,9 +23,34 @@ class CajaController extends Controller
         return view("caja", compact("totalDinero", "totalcaja", "totalPrestamos","totalClientes","totalGanancias")); // Incluir la variable $totalPrestamos en la vista
     }
     
-    public function registros(){
+    public function registros()
+    {
         $cajas = Caja::all(); // Obtén todos los datos de TuModelo
-        return view("registros",compact("cajas"));
+        
+        return view("registros", compact("cajas"));
     }
+    
+
+
+public function guardarRegistroDinero(Request $request)
+{
+    $dineroGlobal = $request->input('dineroGlobal');
+    $dineroCartera = str_replace(['$', '.'], '', $request->input('dineroCartera'));
+    $totalClientes = $request->input('totalClientes');
+    $totalPrestamos = $request->input('totalPrestamos');
+    $totalGanancias = $request->input('totalGanancias');
+    
+    // Guarda los datos en la tabla "registros_dinero"
+    $registroDinero = new Caja();
+    $registroDinero->dinero_global = $dineroGlobal;
+    $registroDinero->dineroCartera = str_replace(['$', ','], '', $request->dineroCartera);
+
+    $registroDinero->total_clientes = $totalClientes;
+    $registroDinero->total_prestamos = $totalPrestamos;
+    $registroDinero->total_ganancias = $totalGanancias;
+    $registroDinero->save();
+    
+    return redirect()->back()->with('success', 'Registro de dinero guardado exitosamente.');
+}
 
 }

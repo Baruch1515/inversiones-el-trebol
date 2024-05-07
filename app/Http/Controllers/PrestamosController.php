@@ -6,48 +6,80 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Prestamo;
 use Illuminate\Support\Facades\DB;
+use App\Models\Ruta;
 class PrestamosController extends Controller
 {
     public function index()
     {
         $clientes = Cliente::all(); 
-        return view("nuevo-prestamo", compact('clientes'));
+        $rutas = Ruta::all();
+        return view("nuevo-prestamo", compact('clientes','rutas'));
     }
 
     public function dashboard(Request $request)
     {
         $diaCobro = $request->cobro;
-        
-        $prestamos = Prestamo::query();
+    
+        $prestamosQuery = Prestamo::query()->with('ruta');
     
         // Verificar si se ha seleccionado un día de cobro
         if (!empty($diaCobro)) {
-            $prestamos->where('cobro', 'LIKE', "%$diaCobro%");
+            $prestamosQuery->where('cobro', 'LIKE', "%$diaCobro%");
         }
     
-        $prestamos = $prestamos->get();
+        // Lógica para buscar clientes
+        $query = $request->input('query');
     
-        return view('dashboard', compact('prestamos', 'diaCobro'));
+        // Obtener clientes que coincidan con la búsqueda
+        $clientes = Cliente::where('nombre', 'like', '%' . $query . '%')
+                            ->orWhere('apellido', 'like', '%' . $query . '%')
+                            ->get();
+    
+        // Filtrar los préstamos por cliente si se ha realizado una búsqueda de cliente
+        if (!empty($query) && !$clientes->isEmpty()) {
+            $prestamosQuery->whereHas('cliente', function ($query) use ($clientes) {
+                $query->whereIn('id', $clientes->pluck('id'));
+            });
+        }
+    
+        // Obtener los préstamos
+        $prestamos = $prestamosQuery->get();
+    
+        return view('dashboard', compact('prestamos', 'diaCobro', 'clientes', 'query'));
     }
     
+    
+    
+    
+    
+
+
     public function store(Request $request)
     {
+        // Crea el nuevo préstamo
         $prestamo = new Prestamo();
         $prestamo->cliente_id = $request->cliente;
-        $prestamo->monto = str_replace(['$', ','], '', $request->monto);
+        $prestamo->ruta_id = $request->ruta; // Asigna la ruta seleccionada al campo ruta_id
+        $prestamo->monto = (int)str_replace(['$', '.'], '', $request->monto);
         $prestamo->cuotas = intval($request->cuotas);
         $prestamo->intereses = $request->intereses;
         $prestamo->nota = $request->nota;
         $prestamo->cobro = implode(', ', $request->cobro);
-        $prestamo->monto_cuota = str_replace(['$', ','], '', $request->monto_cuota);
-        $prestamo->ganancia = $request->ganancia;
-        $prestamo->dinero_total = $prestamo->monto + $prestamo->ganancia; // Calcula el valor del campo dinero_total
-        
-        $prestamo->save();
+        $prestamo->monto_cuota = (float)str_replace(['$', '.'], '', $request->monto_cuota);
     
-        // Puedes agregar cualquier lógica adicional que necesites aquí, como redireccionar a una página o mostrar un mensaje de éxito    
+        // Calcula la ganancia como el porcentaje de intereses sobre el monto
+        $prestamo->ganancia = ($prestamo->monto * $request->intereses) / 100;
+    
+        // Calcula el dinero total sumando el monto y la ganancia
+        $prestamo->dinero_total = $prestamo->monto + $prestamo->ganancia;
+    
+        $prestamo->save();
+        // Redirige con un mensaje de éxito
         return redirect()->back()->with('success', 'Préstamo creado exitosamente');
     }
+    
+
+    
     
     public function destroy(Prestamo $prestamo)
     {

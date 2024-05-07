@@ -5,6 +5,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\CajaController;
+use App\Http\Controllers\RutaController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -22,11 +24,12 @@ use Illuminate\Support\Facades\Route;
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/nuevo-cliente', [ClientesController::class, 'index'])->name('nuevo-cliente');
     Route::post('/guardar-cliente', [ClientesController::class, 'guardar'])->name('guardar.cliente');
     Route::get('/clientes', [ClientesController::class, 'clientes'])->name('clientes.ver');
+    Route::get('/graficas', [CajaController::class, 'graficas'])->name('graficas');
+
     Route::delete('/clientes/{cliente}', [ClientesController::class, 'destroy'])->name('clientes.destroy');
     Route::put('/clientes/{id}', [ClientesController::class, 'update'])->name('clientes.update');
     Route::get('/nuevo-prestamo', [PrestamosController::class, 'index'])->name('nuevo-prestamo');
@@ -45,5 +48,19 @@ use Illuminate\Support\Facades\Route;
     Route::get('/registros', [CajaController::class, 'registros'])->name('registros.index');
     Route::delete('/VerCuotas/{cuota}', [CuotaController::class, 'destroy'])->name('cuotas.destroy');
 
+   
+    Route::get('/rutas', [RutaController::class, 'index'])->name('rutas');
+    Route::post('/rutas', [RutaController::class, 'store'])->name('rutas.store');
+    Route::get('/ruta/{ruta}/editar', [RutaController::class, 'edit'])->name('rutas.edit');
+    Route::put('/ruta/{ruta}', [RutaController::class, 'update'])->name('rutas.update');
+    Route::delete('/ruta/{ruta}', [RutaController::class, 'destroy'])->name('rutas.destroy');
+    
+    Route::get('/ruta/{id}', [RutaController::class, 'index'])->name('ruta.index');
+
+    Route::post('/buscar-clientes', [ClientesController::class, 'buscarClientes'])->name('buscar.clientes');
+
+   // Route::get('/prestamo/{idPrestamo}/cuotas', [PrestamosController::class, 'mostrarCuotas'])->name('prestamo.cuotas');
+
+   Route::get('/vercuotas', [CuotaController::class, 'ver'])->name('ver.cuotas');
 
 require __DIR__.'/auth.php';

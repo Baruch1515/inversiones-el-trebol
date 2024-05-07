@@ -11,23 +11,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clientes', function (Blueprint $table) {
+        Schema::create('cuotas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->string('telefono')->nullable();
-            $table->string('barrio')->nullable();
-            $table->string('direccion')->nullable();
+            $table->unsignedBigInteger('prestamo_id');
+            $table->foreign('prestamo_id')->references('id')->on('prestamos')->onDelete('cascade');
+            $table->bigInteger('monto_cuota');
+            $table->date('fecha');
             $table->timestamps();
         });
     }
-    
+
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('cuotas');
     }
 };

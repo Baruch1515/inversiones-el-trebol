@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Prestamo;
 use App\Models\Cuota;
+use App\Models\Cliente;
 
 class CuotaController extends Controller
 {
@@ -19,8 +20,13 @@ class CuotaController extends Controller
     {
         $prestamo = Prestamo::findOrFail($request->input('prestamo'));
     
-        // Eliminar signo de dólar y puntos del monto_cuota
-        $montoCuota = str_replace(['$', ','], '', $request->input('monto_cuota'));
+        // Obtener el monto de la cuota introducido por el administrador
+        $montoCuota = str_replace(['$', '.'], '', $request->input('monto_cuota'));
+    
+        // Verificar si el monto de la cuota excede el dinero_total del préstamo
+        if ($montoCuota > $prestamo->dinero_total) {
+            return redirect()->back()->with('error', 'El monto de la cuota no puede exceder el dinero total del préstamo.');
+        }
     
         // Crear nueva cuota
         $cuota = new Cuota();
@@ -31,24 +37,32 @@ class CuotaController extends Controller
     
         // Actualizar el dinero_total del préstamo
         $prestamo->dinero_total -= $montoCuota;
-        
-        // Reducir el número de cuotas en 1
-        $prestamo->cuotas--;
     
         // Verificar si todas las cuotas han sido pagadas
         if ($prestamo->cuotas == 0) {
             $prestamo->estado = 'Pagado';
         }
-        
+    
         $prestamo->save();
     
         return redirect()->back()->with('success', 'Cuota agregada exitosamente.');
     }
     
-    public function ver(){
-        $cuotas = Cuota::all(); 
-        return view("vercuotas", compact("cuotas"));
+    public function ver(Request $request) {
+        // Obtén todos los clientes para mostrar en el select
+        $clientes = Cliente::all();
+        // Obtén el cliente seleccionado
+        $clienteId = $request->input('cliente_id');
+        // Obtén las cuotas asociadas al cliente seleccionado
+        $cuotas = Cuota::whereHas('prestamo', function($query) use ($clienteId) {
+            $query->where('cliente_id', $clienteId);
+        })->get();
+        // Retorna la vista 'vercuotas' con las cuotas asociadas al cliente y los clientes disponibles
+        return view('vercuotas', compact('cuotas', 'clientes'));
     }
+    
+
+    
 
     public function destroy(Cuota $cuota)
     {

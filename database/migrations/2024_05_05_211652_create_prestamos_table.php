@@ -9,20 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('prestamos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->unsignedBigInteger('ruta_id')->nullable();
+            $table->foreign('ruta_id')->references('id')->on('rutas')->nullable();            
             $table->unsignedInteger('cuotas');
-            $table->decimal('monto', 8, 3);
+            $table->bigInteger('monto');
             $table->unsignedInteger('intereses');
             $table->string('cobro');
-            $table->string('nota');
-            $table->decimal('monto_cuota', 8, 3);
-            $table->decimal('ganancia', 8, 3)->nullable();
-            $table->decimal('dinero_total', 8, 3)->nullable();
+            $table->string('nota')->nullable();
+            $table->bigInteger('monto_cuota');
+            $table->bigInteger('ganancia')->nullable();
+            $table->bigInteger('dinero_total')->nullable();
             $table->timestamps();
         });
     }

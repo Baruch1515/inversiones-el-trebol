@@ -45,16 +45,17 @@
 </div>
 <script>
     function formatCurrency(input) {
-        // Eliminar caracteres no numéricos
-        let value = input.value.replace(/[^0-9]/g, '');
-
-        // Dar formato al valor con un signo de dólar y puntos cada tres cifras
+        // Elimina el símbolo de dólar y los separadores de miles
+        let value = input.value.replace(/[$,.]/g, '');
+    
+        // Formatea el valor con un signo de dólar y puntos cada tres cifras
         value = '$' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
-        // Asignar el valor formateado de vuelta al campo de entrada
+    
+        // Asigna el valor formateado de vuelta al campo de entrada
         input.value = value;
     }
-</script>
+    </script>
+    
 <br>
 @if(Session::has('success'))
     <div id="floating-alert" class="alert alert-success alert-floating">

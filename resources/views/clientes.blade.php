@@ -82,12 +82,7 @@
                                     </div>
                                 </div>
                                 @if(session('error'))
-    <script>
-        // Muestra la alerta utilizando JavaScript
-        alert("{{ session('error') }}");
-        // Redirige nuevamente a la vista de clientes si es necesario
-    </script>
-@endif
+                                @endif
                                 <div class="modal fade" id="editModal{{ $cliente->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -112,7 +107,7 @@
 
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Telefono</label>
-                                                        <input value="{{$cliente->telefono}}" type="text" name="telefono" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                                                        <input value="{{$cliente->telefono}}" type="text" name="telefono" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                                     </div>
 
 
@@ -141,13 +136,83 @@
                         </tr>
                         @endforeach
                     </tbody>
-
-
-
                 </table>
             </div>
         </div>
     </div>
+    @if(Session::has('success'))
+    <div id="floating-alert" class="alert alert-success alert-floating">
+        {{ Session::get('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <script>
+        // Obtener el elemento de la alerta flotante
+        var floatingAlert = document.getElementById('floating-alert');
+
+        // Mostrar la alerta flotante
+        floatingAlert.classList.add('show');
+
+        // Ocultar la alerta flotante después de 5 segundos
+        setTimeout(function() {
+            floatingAlert.classList.remove('show');
+        }, 5000);
+    </script>
+    <style>
+        .alert-floating {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .alert-floating.show {
+            opacity: 1;
+        }
+    </style>
+    @endif
+
+
+
+    @if(Session::has('error'))
+    <div id="floating-alert" class="alert alert-danger alert-floating">
+        {{ Session::get('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <script>
+        // Obtener el elemento de la alerta flotante
+        var floatingAlert = document.getElementById('floating-alert');
+
+        // Mostrar la alerta flotante
+        floatingAlert.classList.add('show');
+
+        // Ocultar la alerta flotante después de 5 segundos
+        setTimeout(function() {
+            floatingAlert.classList.remove('show');
+        }, 5000);
+    </script>
+    <style>
+        .alert-floating {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .alert-floating.show {
+            opacity: 1;
+        }
+    </style>
+    @endif
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>

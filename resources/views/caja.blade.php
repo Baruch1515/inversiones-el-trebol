@@ -95,7 +95,7 @@
 									</h5>
 									<div class="card-body">
 										<p class="card-text">
-											<b> ${{ $totalGanancias }}</b>
+											<b>${{ number_format($totalGanancias, 3, '.', '.') }}</b>
 										</p>
 									</div>
 								</div>
@@ -168,6 +168,7 @@
         input.value = value;
     }
 </script>
+
 </body>
 
 </html>

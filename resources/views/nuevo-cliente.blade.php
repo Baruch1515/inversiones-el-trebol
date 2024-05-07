@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container-fluid">
-	<div class="row">
+	<div class="row"><br>
         @include("layouts/navigation")
         <br>
 		<div class="col-md-12">

@@ -37,15 +37,6 @@ class ClientesController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validar los datos del formulario de edición
-        $request->validate([
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'telefono' => 'required',
-            'barrio' => 'required',
-            'direccion' => 'required',
-        ]);
-    
         // Obtener el cliente a editar
         $cliente = Cliente::findOrFail($id);
     
@@ -69,6 +60,7 @@ class ClientesController extends Controller
         if ($prestamosPendientes > 0) {
             // Si hay préstamos pendientes, redirige con un mensaje de error
             return redirect()->back()->with('error', 'No puedes eliminar a este cliente porque tiene préstamos pendientes.')->with('client_id', $cliente->id);
+            
         }
         
         // Si no hay préstamos pendientes, procede con la eliminación del cliente

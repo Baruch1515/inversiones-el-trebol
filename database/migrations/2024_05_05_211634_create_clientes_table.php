@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cuotas', function (Blueprint $table) {
+        Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('prestamo_id');
-            $table->foreign('prestamo_id')->references('id')->on('prestamos')->onDelete('cascade');
-            $table->decimal('monto_cuota', 8, 3);
-            $table->date('fecha');
+            $table->string('nombre');
+            $table->string('apellido')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('barrio')->nullable();
+            $table->string('direccion')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cuotas');
+        Schema::dropIfExists('clientes');
     }
 };

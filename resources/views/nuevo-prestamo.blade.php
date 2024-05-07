@@ -82,8 +82,8 @@
             <label class="form-check-label">Sábado</label>
         </div>
 
-        <div class="form-check
-
+ <br>
+<br>
                    <div class="form-group">
                         <label for="exampleInputEmail1">Monto de la cuota</label>
                         <input oninput="formatCurrency(this)" type="text" name="monto_cuota" class="form-control" required>

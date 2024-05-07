@@ -28,7 +28,7 @@
   
   <div class="form-group">
     <label for="exampleInputEmail1">Telefono</label>
-    <input type="text" name="telefono" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+    <input type="text" name="telefono" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 </div>
 
 

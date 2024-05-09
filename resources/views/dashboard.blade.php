@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <form action="{{ route('dashboard') }}" method="GET" class="row g-3">
                                 <div class="col-auto">
                                     <label for="cobro" class="visually-hidden">Día de cobro</label>
@@ -38,7 +38,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <form action="{{ route('dashboard') }}" method="GET">
                                 <div>
                                     <button type="submit" class="btn btn-secondary">Mostrar todos los
@@ -47,7 +47,26 @@
 
                             </form>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <form action="{{ route('dashboard') }}" method="GET" class="row g-3">
+                                <div class="col-auto">
+                                    <label for="ruta" class="visually-hidden">Ruta</label>
+                                </div>
+                                <div class="col-auto">
+                                    <select name="nombre" id="nombre" class="form-control" required>
+                                        <option value="" selected>Seleccione una ruta</option>
+                                        @foreach ($rutas as $ruta)
+                                            <option value="{{ $ruta->nombre }}">{{ $ruta->nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="col-md-3">
                             <form class="row g-3">
                                 <div class="col-auto">
                                     <form method="GET" action="{{ route('dashboard') }}">
@@ -160,6 +179,8 @@
             </div>
         </div>
     </div>
+    {{ $prestamos->links() }}
+
 </body>
 
 </html>

@@ -9,5 +9,6 @@ class Caja extends Model
 {
     use HasFactory;
     protected $table = 'registros_dinero';
+    public $timestamps = false;
 
 }

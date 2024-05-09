@@ -14,14 +14,16 @@ return new class extends Migration
     {
         Schema::create('registros_dinero', function (Blueprint $table) {
             $table->id();
-            $table->decimal('dinero_global', 8, 2); // Cambia la precisión y escala según tus necesidades
-            $table->decimal('dineroCartera', 10, 3); // Cambia la precisión y escala según tus necesidades
+            $table->timestamp('created_at')->useCurrent();
+            $table->bigInteger('dinero_global');
+            $table->bigInteger('dineroCartera');
             $table->unsignedBigInteger('total_clientes')->default(0);
-            $table->unsignedBigInteger('total_prestamos')->default(0);
-            $table->decimal('total_ganancias', 10, 2)->default(0.0);
-            $table->timestamps();
+            $table->bigInteger('total_prestamos')->default(0);
+            $table->bigInteger('total_ganancias')->default(0);
+            $table->bigInteger('sumaCuotasHoy')->default(0);
         });
     }
+    
     
     
     

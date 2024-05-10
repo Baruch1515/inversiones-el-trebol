@@ -12,6 +12,7 @@
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="{{ asset('js/caja.js') }}"></script>
     <title>Inversiones El trebol</title>
 </head>
 
@@ -20,103 +21,106 @@
     <br>
     <form action="{{ route('caja.guardar-registro') }}" method="POST">
         @csrf
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-				<h3> Resumen de Caja - Inversiones El Trebol</h3>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="card">
-						<h5 class="card-header">
-							Dinero Global
-						</h5>
-						<div class="card-body">
-							<p class="card-text">
-								<b>${{ number_format($totalDinero, 0, '.', '.') }}</b>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card">
-						<h5 class="card-header">
-							Dinero en cartera
-						</h5>
-						<div class="card-body">
-							<p class="card-text">
-							<div class="form-group">
-                                <input oninput="formatCurrency(this)" type="text" name="dineroCartera" id="dineroCartera" class="form-control" placeholder="" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Dinero en cartera</small>                                                                              
-							</div>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card">
-						<h5 class="card-header">
-							Numero de clientes
-						</h5>
-						<div class="card-body">
-							<p class="card-text">
-								<b>{{ $totalClientes }}</b>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-            <br>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="card">
-						<h5 class="card-header">
-							Prestamos activos
-						</h5>
-						<div class="card-body">
-							<p class="card-text">
-								<b> {{ $totalPrestamos }}</b>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card">
-						<h5 class="card-header">
-							Ganancias
-						</h5>
-						<div class="card-body">
-							<p class="card-text">
-								<b>${{ number_format($totalGanancias, 0, '.', '.') }}</b>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card">
-						<h5 class="card-header">
-							Recogido del dia
-						</h5>
-						<div class="card-body">
-							<p class="card-text">
-                                <b>${{ number_format($sumaCuotasHoy, 0, ',', '.') }}</b>
-							</p>
-						</div>
-					</div>
-				</div>
-            </div>
-           
-				<br>
-									<input type="hidden" name="dineroGlobal" value="{{ $totalDinero }}">
-                                    <input type="hidden" name="totalClientes" value="{{ $totalClientes }}">
-                                    <input type="hidden" name="totalPrestamos" value="{{ $totalPrestamos }}">
-                                    <input type="hidden" name="totalGanancias" value="{{ $totalGanancias }}">
-                                    <input type="hidden" name="sumaCuotasHoy" value="{{ $sumaCuotasHoy }}">
-                                    <button type="submit" class="btn btn-primary">Guardar Registro <i class="fa-solid fa-cloud"></i></button>
-</form>
-			</div>
-		</div>
-	</div>
-</div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3> Resumen de Caja - Inversiones El Trebol</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <h5 class="card-header">
+                                    Dinero Global
+                                </h5>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <b>${{ number_format($totalDinero, 0, '.', '.') }}</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <h5 class="card-header">
+                                    Dinero en cartera
+                                </h5>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                    <div class="form-group">
+                                        <input oninput="formatCurrency(this)" type="text" name="dineroCartera"
+                                            id="dineroCartera" class="form-control" placeholder=""
+                                            aria-describedby="helpId">
+                                        <small id="helpId" class="text-muted">Dinero en cartera</small>
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <h5 class="card-header">
+                                    Numero de clientes
+                                </h5>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <b>{{ $totalClientes }}</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <h5 class="card-header">
+                                    Prestamos activos
+                                </h5>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <b> {{ $totalPrestamos }}</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <h5 class="card-header">
+                                    Ganancias
+                                </h5>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <b>${{ number_format($totalGanancias, 0, '.', '.') }}</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <h5 class="card-header">
+                                    Recogido del dia
+                                </h5>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <b>${{ number_format($sumaCuotasHoy, 0, ',', '.') }}</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <input type="hidden" name="dineroGlobal" value="{{ $totalDinero }}">
+                    <input type="hidden" name="totalClientes" value="{{ $totalClientes }}">
+                    <input type="hidden" name="totalPrestamos" value="{{ $totalPrestamos }}">
+                    <input type="hidden" name="totalGanancias" value="{{ $totalGanancias }}">
+                    <input type="hidden" name="sumaCuotasHoy" value="{{ $sumaCuotasHoy }}">
+                    <button type="submit" class="btn btn-primary">Guardar Registro <i
+                            class="fa-solid fa-cloud"></i></button>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
 
 
     @if (Session::has('success'))
@@ -153,21 +157,7 @@
             }
         </style>
     @endif
-    <script>
-    function formatCurrency(input) {
-        // Eliminar caracteres no numéricos
-        let value = input.value.replace(/[^0-9]/g, '');
 
-        // Dar formato al valor con un signo de dólar y puntos cada tres cifras
-        value = '$' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
-        // Asignar el valor formateado de vuelta al campo de entrada
-        input.value = value;
-    }
-
-    </script>
-    
-    
 
 </body>
 

@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inversiones El trebol</title>
-    <script src="{{ asset('js/dashboard.js') }}"></script>
 </head>
 
 <body>
@@ -65,7 +64,7 @@
                                 </div>
                             </form>
                         </div>
-                        
+
                         <div class="col-md-3">
                             <form class="row g-3">
                                 <div class="col-auto">
@@ -108,12 +107,12 @@
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#deleteModal{{ $prestamo->id }}">
                                             <i class="fa-solid fa-trash"></i>
-                                        </button>								  
+                                        </button>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#verModal{{ $prestamo->id }}">
                                             <i class="fa-solid fa-eye"></i>
-                                    </button>
-										
+                                        </button>
+
                                         <div class="modal fade" id="deleteModal{{ $prestamo->id }}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -148,17 +147,22 @@
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">
                                                             Prestamo</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                                                        <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p><b>Nombre:</b> {{ $prestamo->cliente->nombre }} {{ $prestamo->cliente->apellido }}
+                                                        <p><b>Nombre:</b> {{ $prestamo->cliente->nombre }}
+                                                            {{ $prestamo->cliente->apellido }}
                                                         </p>
                                                         <p><b>Cuotas:</b> {{ $prestamo->cuotas }}</p>
-                                                        <p><b>Prestamo:</b> ${{ number_format($prestamo->monto, 0, ',', '.') }}</p>
+                                                        <p><b>Prestamo:</b>
+                                                            ${{ number_format($prestamo->monto, 0, ',', '.') }}</p>
                                                         <p><b>Intereses:</b> {{ $prestamo->intereses }}%</p>
-                                                        <p><b>ganancia:</b> ${{ number_format($prestamo->ganancia, 0, ',', '.') }}</p>
-                                                        <p><b>Cuota:</b> ${{ number_format($prestamo->monto_cuota, 0, ',', '.') }}</p>
+                                                        <p><b>ganancia:</b>
+                                                            ${{ number_format($prestamo->ganancia, 0, ',', '.') }}</p>
+                                                        <p><b>Cuota:</b>
+                                                            ${{ number_format($prestamo->monto_cuota, 0, ',', '.') }}
+                                                        </p>
                                                         <p><b>Direccion:</b>
                                                             {{ $prestamo->cliente->direccion }}</p>
                                                         <p><b>Fecha de inicio:</b>

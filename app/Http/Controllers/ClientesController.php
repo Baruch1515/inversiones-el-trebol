@@ -19,7 +19,7 @@ class ClientesController extends Controller
         $clientes = Cliente::all(); // Obtén todos los datos de TuModelo
         return view('clientes', compact('clientes'));
     }
-    
+
     public function guardar(Request $request)
     {
         $cliente = new Cliente();
@@ -39,17 +39,17 @@ class ClientesController extends Controller
     {
         // Obtener el cliente a editar
         $cliente = Cliente::findOrFail($id);
-    
+
         // Actualizar los datos del cliente con los valores del formulario
         $cliente->nombre = $request->input('nombre');
         $cliente->apellido = $request->input('apellido');
         $cliente->telefono = $request->input('telefono');
         $cliente->barrio = $request->input('barrio');
         $cliente->direccion = $request->input('direccion');
-    
+
         // Guardar los cambios en la base de datos
         $cliente->save();
-    
+
         // Redireccionar a la página de registros con un mensaje de éxito
         return redirect()->back();
     }
@@ -60,14 +60,14 @@ class ClientesController extends Controller
         if ($prestamosPendientes > 0) {
             // Si hay préstamos pendientes, redirige con un mensaje de error
             return redirect()->back()->with('error', 'No puedes eliminar a este cliente porque tiene préstamos pendientes.')->with('client_id', $cliente->id);
-            
+
         }
-        
+
         // Si no hay préstamos pendientes, procede con la eliminación del cliente
         $cliente->delete();
-    
+
         // Redirige a la página de registros con un mensaje de éxito
         return redirect()->back()->with('success', 'Cliente eliminado exitosamente');
     }
-    
+
 }

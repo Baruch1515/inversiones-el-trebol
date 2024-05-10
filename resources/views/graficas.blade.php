@@ -93,28 +93,28 @@
         });
 
         var ctx = document.getElementById('crecimientoDineroGlobalChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: {!! json_encode($fechas) !!},
-            datasets: [{
-                label: 'Plata repartida',
-                data: {!! json_encode($dineroGlobal) !!},
-                backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($fechas) !!},
+                datasets: [{
+                    label: 'Plata repartida',
+                    data: {!! json_encode($dineroGlobal) !!},
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
                 }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
             }
-        }
-    });
+        });
     </script>
 
 </body>

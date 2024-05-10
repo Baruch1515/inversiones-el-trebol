@@ -1,19 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Caja;
 use App\Models\Prestamo;
 use App\Models\Cliente;
 use App\Models\Cuota;
 use App\Models\Ruta;
 use Illuminate\Http\Request;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Carbon\Carbon;
-
 use App\Exports\CajaExport;
 use Maatwebsite\Excel\Facades\Excel;
+
 class CajaController extends Controller
 {
     function formatearNumero($numero)
@@ -104,16 +102,16 @@ class CajaController extends Controller
         // Inicializar arreglos para almacenar las fechas y los montos de dinero global
         $fechas = [];
         $dineroGlobal = [];
-    
+
         // Iterar sobre los registros de dinero para obtener las fechas y los montos
         foreach ($registrosDinero as $registro) {
             $fechas[] = $registro->created_at; // Suponiendo que el modelo tiene un atributo 'fecha' que almacena la fecha del registro
             $dineroGlobal[] = $registro->dinero_global; // Suponiendo que el modelo tiene un atributo 'dinero_global' que almacena el monto de dinero global
         }
-    
+
 
         // Pasar los datos a la vista
-        return view('graficas', compact('fechas', 'dineroGlobal','sumaCuotasHoy', 'labels', 'montos', 'nombresRutas', 'montosPorRuta', 'coloresBarras', 'dineroGlobal'));
+        return view('graficas', compact('fechas', 'dineroGlobal', 'sumaCuotasHoy', 'labels', 'montos', 'nombresRutas', 'montosPorRuta', 'coloresBarras', 'dineroGlobal'));
     }
 
     public function index()

@@ -28,8 +28,9 @@
                     <div class="col-auto">
                         <div class="col-auto">
                             <label for="staticEmail2" class="visually-hidden">Email</label>
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Fecha de Inicio:">
-                          </div>                        
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2"
+                                value="Fecha de Inicio:">
+                        </div>
                         <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control">
                     </div>
                     <div class="col-auto">
@@ -37,11 +38,11 @@
                         <input type="date" id="fecha_fin" name="fecha_fin" class="form-control">
                     </div>
                     <div class="col-auto">
-						<button type="submit" class="btn btn-primary">Buscar</button>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
                     </div>
-                  </form>
-                  <br>
-                
+                </form>
+                <br>
+
                 <table id="tabla" class="table table-bordered table-hover">
                     <thead>
                         <tr>
@@ -115,13 +116,13 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- Resto del contenido de tu tabla -->
-                <a href="{{ route('exportar', ['fecha_inicio' => request('fecha_inicio'), 'fecha_fin' => request('fecha_fin')]) }}" class="btn btn-success">Descargar Excel <i
-                    class="fa-solid fa-floppy-disk"></i></a>
+                <a href="{{ route('exportar', ['fecha_inicio' => request('fecha_inicio'), 'fecha_fin' => request('fecha_fin')]) }}"
+                    class="btn btn-success">Descargar Excel <i class="fa-solid fa-floppy-disk"></i></a>
 
             </div>
         </div>
     </div>
-    
+
 
 </body>
 

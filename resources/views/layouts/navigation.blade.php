@@ -1,49 +1,63 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unna:wght@700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/jpg" href="https://cdn.pixabay.com/photo/2012/04/01/18/29/four-leaf-clover-23901_960_720.png">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<head>
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{{ route('dashboard') }}">Inversiones El Trebol</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link " href="{{ route('clientes.ver') }}">Clientes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{{ route('nuevo-cliente') }}">Nuevo Cliente</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{{ route('nuevo-prestamo') }}">Nuevo Prestamo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{{ route('cuotas.create') }}">Nueva Cuota</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{{ route('cuotas') }}">Cuotas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{{ route('rutas') }}">Rutas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{{ route('caja.index') }}">Caja</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{{ route('registros.index') }}">Registro de caja</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{{ route('graficas') }}">Graficos</a>
-        </li>
-      </ul>
+    <!-- Template Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+</head>
+<!-- Sidebar Start -->
+<div class="sidebar pe-4 pb-3">
+    <nav class="navbar bg-secondary navbar-dark">
+        <a href="{{ route('dashboard') }}" class="navbar-brand mx-4 mb-3">
+            <h3 class="text-primary"><i class="fa fa-solid fa-clover me-2"></i></i>El Trebol</h3>
 
-    </div>
-  </div>
-</nav>
-<br
+        </a>
+        <div class="navbar-nav w-100">
+            <a href="{{ route('dashboard') }}" class="nav-item nav-link active"><i
+                    class="fa fa-tachometer-alt me-2"></i>Inicio</a>
+
+
+
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                        class="far fa-file-alt me-2"></i>Cuotas</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="{{ route('cuotas.create') }}" class="dropdown-item">Nueva Cuota</a>
+                    <a href="{{ route('cuotas') }}" class="dropdown-item">Registro de Cuotas</a>
+                </div>
+            </div>
+
+
+
+            <a href="{{ route('nuevo-prestamo') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Nuevo
+                Prestamo</a>
+
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                        class="far fa-file-alt me-2"></i>Cuotas</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="{{ route('cuotas.create') }}" class="dropdown-item">Nueva Cuota</a>
+                    <a href="{{ route('cuotas') }}" class="dropdown-item">Registro de Cuotas</a>
+                </div>
+            </div>
+
+            <a href="{{ route('rutas') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Rutas</a>
+
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                        class="far fa-file-alt me-2"></i>Caja</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="{{ route('caja.index') }}" class="dropdown-item">Caja</a>
+                    <a href="{{ route('registros.index') }}" class="dropdown-item">Registro de Caja</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- Sidebar End -->

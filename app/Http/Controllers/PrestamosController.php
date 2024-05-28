@@ -8,6 +8,8 @@ use App\Models\Cliente;
 use App\Models\Prestamo;
 use Illuminate\Support\Facades\DB;
 use App\Models\Ruta;
+use App\Models\Cuota;
+
 
 class PrestamosController extends Controller
 {
@@ -19,6 +21,12 @@ class PrestamosController extends Controller
     }
     public function dashboard(Request $request)
     {
+        $totalDinero = Prestamo::sum('dinero_total');
+        $totalcaja = Cuota::sum('monto_cuota');
+        $totalPrestamos = Prestamo::count(); // Agregar esta línea para obtener el número total de préstamos
+        $totalClientes = Cliente::count(); // Agregar esta línea para obtener el número total de préstamos
+        $totalGanancias = Prestamo::sum('ganancia'); // Agregar esta línea para obtener el número total de préstamos
+        $horaActual = Carbon::now('America/Bogota');
         $diaCobro = $request->cobro;
         $rutas = Ruta::all();
         $nombreRuta = $request->nombre; // Cambiado de $ruta a $nombreRuta para mayor claridad
@@ -51,11 +59,14 @@ class PrestamosController extends Controller
                 $query->whereIn('id', $clientes->pluck('id'));
             });
         }
+        $today = Carbon::today('America/Bogota');
+        $cuotasHoy = Cuota::whereDate('fecha', $today)->get();
+        $sumaCuotasHoy = $cuotasHoy->sum('monto_cuota');
 
         // Obtener los préstamos paginados en lugar de obtener todos los resultados
-        $prestamos = $prestamosQuery->paginate(10);
+        $prestamos = $prestamosQuery->paginate(5);
 
-        return view('dashboard', compact('prestamos', 'diaCobro', 'clientes', 'query', 'rutas'));
+        return view('dashboard', compact('prestamos', 'diaCobro', 'clientes', 'query', 'rutas', 'totalDinero', 'totalcaja', 'sumaCuotasHoy', 'totalPrestamos', 'totalClientes', 'totalGanancias'));
     }
 
 

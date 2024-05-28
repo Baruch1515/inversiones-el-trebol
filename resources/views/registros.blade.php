@@ -72,7 +72,7 @@
 
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{ $caja->id }}"">
-                                        <i class="fas fa-trash-alt"></i>
+                                        Eliminar <i class="fas fa-trash-alt"></i>
                                     </button>
                                     <!-- Modal ELIMINAR REGISTRO -->
                                     <div class="modal fade" id="deleteModal{{ $caja->id }}" tabindex="-1"

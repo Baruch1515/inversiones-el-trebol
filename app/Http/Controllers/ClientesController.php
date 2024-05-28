@@ -16,9 +16,10 @@ class ClientesController extends Controller
 
     public function clientes()
     {
-        $clientes = Cliente::all(); // Obtén todos los datos de TuModelo
+        $clientes = Cliente::paginate(10); // Aplica paginate() antes de all()
         return view('clientes', compact('clientes'));
     }
+
 
     public function guardar(Request $request)
     {

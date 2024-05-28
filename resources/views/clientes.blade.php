@@ -59,11 +59,11 @@
                                 <td>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#editModal{{ $cliente->id }}">
-                                        <i class="fa-solid fa-pen-to-square"></i>
+                                        Editar <i class="fa-solid fa-pen-to-square"></i>
                                     </button>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{ $cliente->id }}">
-                                        <i class="fa-solid fa-trash"></i>
+                                        Eliminar <i class="fa-solid fa-trash"></i>
                                     </button>
                                     <!-- Modal -->
                                     <div class="modal fade" id="deleteModal{{ $cliente->id }}" tabindex="-1"
@@ -228,6 +228,38 @@
                 opacity: 1;
             }
         </style>
+    @endif
+
+    @if ($clientes->hasPages())
+        <ul class="pagination">
+            {{-- Flecha Izquierda --}}
+            @if ($clientes->onFirstPage())
+                <li class="page-item disabled">
+                    <span class="page-link" aria-hidden="true"><i class="fa-solid fa-left-long"></span>
+                </li>
+            @else
+                <li class="page-item">
+                    <a class="page-link" href="{{ $clientes->previousPageUrl() }}" rel="prev"
+                        aria-label="@lang('pagination.previous')">
+                        <span aria-hidden="true"><i class="fa-solid fa-left-long"></i></span>
+                    </a>
+                </li>
+            @endif
+
+            {{-- Flecha Derecha --}}
+            @if ($clientes->hasMorePages())
+                <li class="page-item">
+                    <a class="page-link" href="{{ $clientes->nextPageUrl() }}" rel="next"
+                        aria-label="@lang('pagination.next')">
+                        <span aria-hidden="true"><i class="fa-solid fa-right-long"></i></span>
+                    </a>
+                </li>
+            @else
+                <li class="page-item disabled">
+                    <span class="page-link" aria-hidden="true"><i class="fa-solid fa-right-long"></i></span>
+                </li>
+            @endif
+        </ul>
     @endif
 
 

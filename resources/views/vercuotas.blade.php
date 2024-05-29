@@ -7,17 +7,19 @@
     <title>Inversiones El trebol</title>
     <script src="https://kit.fontawesome.com/0c07597779.js" crossorigin="anonymous"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 </head>
 
 <body>
-    @include('layouts/navigation')
-    <br>
-
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-3">
+                @include('layouts/navigation')
+
+            </div>
+            <div class="col-md-9">
                 <h3>Registro de Cuotas</h3>
                 <form class="row g-3" action="{{ route('ver.cuotas') }}" method="GET">
 
@@ -35,7 +37,7 @@
                     </div>
                 </form>
                 <br>
-                <table class="table table-striped table-hover table-sm">
+                <table class="table table-sm">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -64,13 +66,15 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación
+                                                    <h5 style="color: black;" class="modal-title"
+                                                        id="exampleModalLabel">Confirmar Eliminación
                                                     </h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>¿Estás seguro de que deseas eliminar este registro?</p>
+                                                    <p style="color: black;">¿Estás seguro de que deseas eliminar este
+                                                        registro?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <form action="{{ route('cuotas.destroy', $cuota->id) }}"
@@ -92,10 +96,17 @@
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-NZk3gvokrnUm3fkYHNqoX2zdRmR9P83QkrZ4Lm5SQfsuz0d6DdYgxaqwxltZXvKH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+
+    </script>
+    <style>
+        .table th,
+        .table td {
+            color: white;
+        }
+    </style>
 </body>
 
 </html>

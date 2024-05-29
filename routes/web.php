@@ -26,6 +26,8 @@ Route::post('/guardar-cliente', [ClientesController::class, 'guardar'])->name('g
 Route::get('/clientes', [ClientesController::class, 'clientes'])->name('clientes.ver');
 Route::delete('/clientes/{cliente}', [ClientesController::class, 'destroy'])->name('clientes.destroy');
 Route::put('/clientes/{id}', [ClientesController::class, 'update'])->name('clientes.update');
+Route::get('/search-clientes', [ClientesController::class, 'search'])->name('clientes.search');
+
 
 //CAJA
 Route::get('/graficas', [CajaController::class, 'graficas'])->name('graficas');

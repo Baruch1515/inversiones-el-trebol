@@ -24,6 +24,8 @@
 
             </div>
             <div class="col-md-9">
+                <br>
+                <h3>Registrar nueva cuota</h3>
                 <form action="/cuotas" method="POST">
                     @csrf
                     <br>

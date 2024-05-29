@@ -13,10 +13,23 @@ class ClientesController extends Controller
     {
         return view('nuevo-cliente');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $clientes = Cliente::where('nombre', 'LIKE', "%{$query}%")
+            ->orWhere('apellido', 'LIKE', "%{$query}%")
+            ->orWhere('telefono', 'LIKE', "%{$query}%")
+            ->orWhere('barrio', 'LIKE', "%{$query}%")
+            ->orWhere('direccion', 'LIKE', "%{$query}%")
+            ->get();
+
+        return response()->json($clientes);
+    }
+
 
     public function clientes()
     {
-        $clientes = Cliente::paginate(10); // Aplica paginate() antes de all()
+        $clientes = Cliente::paginate(5); // Aplica paginate() antes de all()
         return view('clientes', compact('clientes'));
     }
 

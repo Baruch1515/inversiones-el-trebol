@@ -7,6 +7,9 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 
+    {{-- FONTAWESOME --}}
+    <script src="https://kit.fontawesome.com/0c07597779.js" crossorigin="anonymous"></script>
+
 
     <!-- Template Stylesheet -->
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
@@ -15,7 +18,7 @@
 <div class="sidebar pe-4 pb-3">
     <nav class="navbar bg-secondary navbar-dark">
         <a href="{{ route('dashboard') }}" class="navbar-brand mx-4 mb-3">
-            <h3 class="text-primary"><i class="fa fa-solid fa-clover me-2"></i></i>El Trebol</h3>
+            <h3 class="text-primary"><i class="fa fa-solid fa-clover me-2"></i></i></h3>
 
         </a>
         <div class="navbar-nav w-100">
@@ -26,10 +29,10 @@
 
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                        class="far fa-file-alt me-2"></i>Cuotas</a>
+                        class="far fa-file-alt me-2"></i>Clientes</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="{{ route('cuotas.create') }}" class="dropdown-item">Nueva Cuota</a>
-                    <a href="{{ route('cuotas') }}" class="dropdown-item">Registro de Cuotas</a>
+                    <a href="{{ route('nuevo-cliente') }}" class="dropdown-item">Nuevo Cliente</a>
+                    <a href="{{ route('clientes.ver') }}" class="dropdown-item">Clientes</a>
                 </div>
             </div>
 
@@ -48,6 +51,7 @@
             </div>
 
             <a href="{{ route('rutas') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Rutas</a>
+            <a href="{{ route('graficas') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Graficas</a>
 
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i

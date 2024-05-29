@@ -19,4 +19,36 @@ function calcularDineroTotal() {
     document.getElementById("dinero_total").value = dineroTotal.toFixed(2); // Limitar a dos decimales
 }
 
+function formatCurrency(input) {
+    // Eliminar caracteres no numéricos
+    let value = input.value.replace(/[^0-9]/g, "");
 
+    // Dar formato al valor con un signo de dólar y puntos cada tres cifras
+    value = "$" + value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+    // Asignar el valor formateado de vuelta al campo de entrada
+    input.value = value;
+}
+
+// Función para filtrar los elementos del select
+function filtrarClientes() {
+    var input, filtro, select, options, option, i, txtValue;
+    input = document.getElementById("busquedaCliente");
+    filtro = input.value.toUpperCase();
+    select = document.getElementById("cliente");
+    options = select.getElementsByTagName("option");
+    for (i = 0; i < options.length; i++) {
+        option = options[i];
+        txtValue = option.textContent || option.innerText;
+        if (txtValue.toUpperCase().indexOf(filtro) > -1) {
+            option.style.display = "";
+        } else {
+            option.style.display = "none";
+        }
+    }
+}
+
+// Evento de entrada para activar la función de filtrado
+document
+    .getElementById("busquedaCliente")
+    .addEventListener("input", filtrarClientes);
